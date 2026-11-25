@@ -1,8 +1,8 @@
 # Homeface
 
-A Pebble Time 2 watchface showing the time, date, weather and a second time zone. Written in
-Alloy. Inspired by [Homezone](https://apps.rebble.io/en_US/application/6a32271ee24af400096e07f0)
-by Ciaran Flanagan.
+A Pebble Time 2 watchface showing the time, date, weather and a second time zone, written in Alloy.
+Forked from [Homezone](https://apps.rebble.io/en_US/application/6a32271ee24af400096e07f0) by
+Ciaran Flanagan.
 
 ## Build
 
@@ -11,12 +11,13 @@ pebble build
 pebble install --phone <phone-ip>
 ```
 
-## Tools
+## Fonts
 
-- `tools/pixfont.py`: builds the pixel fonts from `fonts-src/*.txt`.
-- `tools/iconfont.py`: builds the weather icon font from `fonts-src/phosphor`.
-- `tools/metrics.py`: updates `src/embeddedjs/metrics.js` after a font change (run between two builds).
-- `tools/diff.sh`: compares an emulator screenshot against `reference/golden-demo.png`.
+The fonts in `src/embeddedjs/assets` are generated; edit the sources and rerun the tool:
+
+- `tools/pixfont.py`: pixel fonts from `fonts-src/*.txt`.
+- `tools/iconfont.py`: weather icons from `fonts-src/phosphor`.
+- `tools/metrics.py`: refreshes `src/embeddedjs/metrics.js` after a font change (run between two builds).
 
 ## Credits
 

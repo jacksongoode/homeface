@@ -5,7 +5,6 @@ import Message from "pebble/message";
 import Health from "pebble/health";
 import Battery from "embedded:sensor/Battery";
 import METRICS from "metrics";
-import DEMO from "demo";
 
 // Layout (emery 200x228) on a 16px margin / 8px gap grid. Y values are the top row of ink.
 const M = 16;                          // side, top and bottom margin
@@ -112,7 +111,7 @@ function complication(now) {
 }
 
 function draw() {
-  const now = DEMO ? DEMO.date : lastDate;
+  const now = lastDate;
   const fg = s.light ? BLACK : WHITE;
   const dim = s.light ? DARK : LIGHT;
   const a = s.accent;
@@ -177,8 +176,6 @@ const message = new Message({
   onWritable() { writable = true; },
   onSuspend() { writable = false; },
 });
-
-if (DEMO) Object.assign(s, DEMO.settings);
 
 watch.addEventListener("minutechange", (e) => {
   lastDate = e.date;

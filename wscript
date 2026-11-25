@@ -3,7 +3,6 @@
 #
 # Feel free to customize this to your needs.
 #
-import os
 import os.path
 
 top = '.'
@@ -34,8 +33,6 @@ def build(ctx):
     for platform in ctx.env.TARGET_PLATFORMS:
         ctx.env = ctx.all_envs[platform]
         ctx.set_group(ctx.env.PLATFORM_NAME)
-        if os.environ.get('DEMO'):  # fixed sample data for screenshot diffs
-            ctx.env.append_value('DEFINES', 'DEMO')
         app_elf = '{}/pebble-app.elf'.format(ctx.env.BUILD_DIR)
         ctx.pbl_build(source=ctx.path.ant_glob('src/c/**/*.c'), target=app_elf, bin_type='app')
 

@@ -5,7 +5,14 @@
 set -e
 cd "$(dirname "$0")/.."
 REF=${1:-reference/golden-demo.png}; OUT=build/shot.png
-DEMO=1 pebble build >/dev/null 2>&1 || { pebble build 2>&1 | grep -E "error" ; exit 1; }
+cp src/embeddedjs/demo.js build/demo.js.bak 2>/dev/null || { mkdir -p build; cp src/embeddedjs/demo.js build/demo.js.bak; }
+trap 'cp build/demo.js.bak src/embeddedjs/demo.js' EXIT
+cat > src/embeddedjs/demo.js <<'JS'
+const date = new Date(2026, 10, 25, 0, 29);
+const home = 8 * 60 + 29 - (date.getUTCHours() * 60 + date.getUTCMinutes());
+export default { date, settings: { temp: 14, icon: "c", tzOffset: home, tzLabel: "DUBLIN" } };
+JS
+pebble build >/dev/null 2>&1 || { pebble build 2>&1 | grep -iE "error" ; exit 1; }
 tools/emushot.sh build/homeface.pbw $OUT 4 >/dev/null
 B=tools/bbox.sh
 while read -r name g; do

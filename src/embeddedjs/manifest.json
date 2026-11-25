@@ -1,0 +1,65 @@
+{
+  "include": [
+    "$(MODDABLE)/examples/manifest_mod.json",
+    "$(MODDABLE)/examples/manifest_typings.json"
+  ],
+  "modules": {
+    "*": [
+      "./main",
+      "./metrics",
+      "./demo"
+    ]
+  },
+  "resources": {
+    "*-alpha": [
+      {
+        "source": "./assets/SpaceGrotesk-SemiBold",
+        "size": 72,
+        "characters": "0123456789"
+      },
+      {
+        "source": "./assets/SpaceGrotesk-SemiBold",
+        "size": 22,
+        "characters": "-0123456789:%,.K°CF"
+      },
+      {
+        "source": "./assets/Pix-mono10",
+        "size": 14,
+        "monochrome": true,
+        "blocks": [
+          "Basic Latin"
+        ]
+      },
+      {
+        "source": "./assets/Pix-mono12",
+        "size": 18,
+        "monochrome": true,
+        "blocks": [
+          "Basic Latin"
+        ]
+      },
+      {
+        "source": "./assets/Pix-mono10-bold",
+        "size": 14,
+        "monochrome": true,
+        "blocks": [
+          "Basic Latin"
+        ]
+      },
+      {
+        "source": "./assets/Pix-mono12-bold",
+        "size": 18,
+        "monochrome": true,
+        "blocks": [
+          "Basic Latin"
+        ]
+      },
+      {
+        "source": "./assets/Pix-icons",
+        "size": 25,
+        "monochrome": true,
+        "characters": "acdefg"
+      }
+    ]
+  }
+}

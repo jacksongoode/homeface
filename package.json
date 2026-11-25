@@ -37,45 +37,8 @@
       "ZONE"
     ],
     "resources": {
-      "media": [
-        {
-          "type": "font",
-          "name": "FONT_TIME_72",
-          "file": "fonts/SpaceGrotesk-SemiBold.ttf",
-          "characterRegex": "[0-9]"
-        },
-        {
-          "type": "font",
-          "name": "FONT_NUM_22",
-          "file": "fonts/SpaceGrotesk-SemiBold.ttf",
-          "characterRegex": "[-0-9:%,.K°CF]"
-        },
-        {
-          "type": "font",
-          "name": "FONT_SMALL_14",
-          "file": "fonts/Pix-mono10.ttf"
-        },
-        {
-          "type": "font",
-          "name": "FONT_DATE_18",
-          "file": "fonts/Pix-mono12.ttf"
-        },
-        {
-          "type": "font",
-          "name": "FONT_ICONS_25",
-          "file": "fonts/Pix-icons.ttf"
-        },
-        {
-          "type": "font",
-          "name": "FONT_SMALL_BOLD_14",
-          "file": "fonts/Pix-mono10-bold.ttf"
-        },
-        {
-          "type": "font",
-          "name": "FONT_DATE_BOLD_18",
-          "file": "fonts/Pix-mono12-bold.ttf"
-        }
-      ]
-    }
+      "media": []
+    },
+    "projectType": "moddable"
   }
 }

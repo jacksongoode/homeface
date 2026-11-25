@@ -64,6 +64,16 @@
           "type": "font",
           "name": "FONT_ICONS_25",
           "file": "fonts/Pix-icons.ttf"
+        },
+        {
+          "type": "font",
+          "name": "FONT_SMALL_BOLD_14",
+          "file": "fonts/Pix-mono10-bold.ttf"
+        },
+        {
+          "type": "font",
+          "name": "FONT_DATE_BOLD_18",
+          "file": "fonts/Pix-mono12-bold.ttf"
         }
       ]
     }

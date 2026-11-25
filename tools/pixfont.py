@@ -4,7 +4,7 @@ Each design pixel is a 100-unit square and unitsPerEm = 100 * size, so at the
 Pebble resource size (ppem = size) every square lands on exactly one screen
 pixel and the rasterizer has nothing to round.
 
-usage: pixfont.py <src.txt> <out.ttf> [--check]
+usage: pixfont.py <src.txt> <out.ttf> [--bold] [--check]
 """
 
 import sys
@@ -56,8 +56,22 @@ def outline(rows, left):
     return pen.glyph()
 
 
-def build(src, out):
+def embolden(glyphs):
+    """Classic pixel bold: OR each glyph with itself shifted 1px right (vertical stems go 2px)."""
+    out = {}
+    for ch, rows in glyphs.items():
+        w = max(len(r) for r in rows) + 1
+        out[ch] = [
+            "".join("#" if (x < len(r) and r[x] == "#") or (0 < x <= len(r) and r[x - 1] == "#") else "." for x in range(w))
+            for r in rows
+        ]
+    return out
+
+
+def build(src, out, bold=False):
     meta, glyphs = parse(src)
+    if bold:
+        glyphs = embolden(glyphs)
     size, adv, left = meta["size"], meta["advance"] * U, meta["left"]
     order = [".notdef", "space"]
     cmap, glyf, hmtx = {32: "space"}, {}, {}
@@ -137,6 +151,6 @@ def check(out, size, glyphs):
 
 
 if __name__ == "__main__":
-    size, glyphs = build(sys.argv[1], sys.argv[2])
+    size, glyphs = build(sys.argv[1], sys.argv[2], bold="--bold" in sys.argv)
     if "--check" in sys.argv:
         sys.exit(0 if check(sys.argv[2], size, glyphs) else 1)

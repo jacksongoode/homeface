@@ -5,7 +5,8 @@ colours follow [Homezone](https://apps.rebble.io/en_US/application/6a32271ee24af
 Ciaran Flanagan, redrawn so every element is pixel-exact on the 200x228 screen.
 
 - Small text uses hand-drawn pixel fonts (`fonts-src/*.txt`) instead of Space Mono rasterized at
-  13-18px, so every stroke is 1px and every glyph sits on a fixed pitch.
+  13-18px, so every stroke is 1px and every glyph sits on a fixed pitch. The light theme uses a
+  bold variant (2px stems), since thin dark strokes on white read too faint.
 - Clock, temperature and values use Space Grotesk SemiBold (OFL, `resources/fonts/OFL.txt`) and are
   placed by their ink using `src/c/metrics.auto.h`, so the clock is always centred and right-aligned
   values end exactly on the margin.
@@ -27,7 +28,7 @@ pebble install --emulator emery
 
 | Command | Does |
 | --- | --- |
-| `uv run --with fonttools --with freetype-py python tools/pixfont.py fonts-src/mono10.txt resources/fonts/Pix-mono10.ttf --check` | Builds a pixel font and checks it rasterizes exactly as drawn |
+| `uv run --with fonttools --with freetype-py python tools/pixfont.py fonts-src/mono10.txt resources/fonts/Pix-mono10.ttf --check` | Builds a pixel font (`--bold` for the light-theme variant) and checks it rasterizes exactly as drawn |
 | `uv run python tools/icons.py fonts-src/icons.txt` | Regenerates the icon glyph source (then build it with `pixfont.py`) |
 | `uv run --with freetype-py python tools/metrics.py` | Regenerates `src/c/metrics.auto.h` after a font or character-set change |
 | `tools/diff.sh [ref.png]` | Builds with `DEMO=1` (fixed sample data), screenshots the emulator and prints each element's ink box against `reference/golden-demo.png` (or `reference/orig-dark.png`, the original) |

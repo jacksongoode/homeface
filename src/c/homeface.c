@@ -21,12 +21,14 @@ typedef struct {
 } FontMetrics;
 #include "metrics.auto.h"
 
-enum { F_TIME, F_NUM, F_SMALL, F_DATE, F_ICONS, F_COUNT };
+// F_SMALL_B/F_DATE_B: bold pixel fonts, used on the light theme where 1px dark strokes look faint.
+enum { F_TIME, F_NUM, F_ICONS, F_SMALL, F_DATE, F_SMALL_B, F_DATE_B, F_COUNT };
 // Rows between a text box's top and the top of its ink (cap height; icon grid for F_ICONS).
-static const int8_t s_ink_top[F_COUNT] = {21, 6, 4, 6, 0};
+static const int8_t s_ink_top[F_COUNT] = {21, 6, 0, 4, 6, 4, 6};
 static const uint32_t s_font_res[F_COUNT] = {
-  RESOURCE_ID_FONT_TIME_72, RESOURCE_ID_FONT_NUM_22, RESOURCE_ID_FONT_SMALL_14,
-  RESOURCE_ID_FONT_DATE_18, RESOURCE_ID_FONT_ICONS_25,
+  RESOURCE_ID_FONT_TIME_72, RESOURCE_ID_FONT_NUM_22, RESOURCE_ID_FONT_ICONS_25,
+  RESOURCE_ID_FONT_SMALL_14, RESOURCE_ID_FONT_DATE_18, RESOURCE_ID_FONT_SMALL_BOLD_14,
+  RESOURCE_ID_FONT_DATE_BOLD_18,
 };
 static GFont s_fonts[F_COUNT];
 
@@ -69,6 +71,7 @@ static Settings s = {
 };
 
 static void text(GContext *ctx, const char *str, int f, GRect r, GTextAlignment al, GColor c) {
+  if (s.light && (f == F_SMALL || f == F_DATE)) f += F_SMALL_B - F_SMALL;
   r.origin.y -= s_ink_top[f];
   graphics_context_set_text_color(ctx, c);
   graphics_draw_text(ctx, str, s_fonts[f], r, GTextOverflowModeFill, al, NULL);

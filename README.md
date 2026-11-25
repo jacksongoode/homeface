@@ -33,5 +33,4 @@ pebble install --emulator emery
 | `uv run --with fonttools --with freetype-py python tools/pixfont.py fonts-src/mono10.txt src/embeddedjs/assets/Pix-mono10.ttf --check` | Builds a pixel font (`--bold` for the light-theme variant) and checks it rasterizes exactly as drawn |
 | `uv run --with fonttools python tools/iconfont.py src/embeddedjs/assets/PhosphorWeather.ttf` | Builds the weather icon font from the [Phosphor](https://phosphoricons.com) SVGs in `fonts-src/phosphor` (MIT) |
 | `pebble build && uv run --with pillow python tools/metrics.py && pebble build` | Regenerates `src/embeddedjs/metrics.js` from the build's font atlases after a font or character-set change |
-| `tools/diff.sh [ref.png]` | Builds with fixed sample data (`src/embeddedjs/demo.js`), screenshots the emulator and prints each element's ink box against `reference/golden-demo.png` (or `reference/orig-dark.png`, the original) |
-| `tools/appmsg.py <uuid> key=value ...` | Sends an AppMessage to an app in the emulator (run with the pebble-tool Python) |
+| `tools/diff.sh [ref.png]` | Builds with fixed sample data (`src/embeddedjs/demo.js`), screenshots the emulator and prints each element's ink box against `reference/golden-demo.png` |

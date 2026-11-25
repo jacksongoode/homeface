@@ -1,7 +1,6 @@
 #!/bin/bash
 # DEMO build -> emulator screenshot -> per-element ink bbox vs reference, as numbers.
-# usage: tools/diff.sh [ref.png]   (default: reference/golden-demo.png, the approved layout;
-#        reference/orig-dark.png is the original Homezone at the same time and weather)
+# usage: tools/diff.sh [ref.png]   (default: reference/golden-demo.png, the approved layout)
 set -e
 cd "$(dirname "$0")/.."
 REF=${1:-reference/golden-demo.png}; OUT=build/shot.png

@@ -105,47 +105,24 @@ def build(src, out, bold=False):
 
 
 def check(out, size, glyphs):
-    """Rasterize like the SDK's fontgen (both modes) and compare to the source."""
+    """Rasterize with FreeType mono, as Alloy's monochrome font build does, and compare."""
     import freetype as ft
 
     face = ft.Face(out)
     face.set_pixel_sizes(0, size)
-    modes = {
-        "mono": ft.FT_LOAD_RENDER | ft.FT_LOAD_MONOCHROME | ft.FT_LOAD_TARGET_MONO,
-        "legacy": ft.FT_LOAD_RENDER,
-    }
     bad = 0
-    for mode, flags in modes.items():
-        for ch, rows in glyphs.items():
-            face.load_char(ch, flags)
-            b = face.glyph.bitmap
-            got = set()
-            for r in range(b.rows):
-                for c in range(b.width):
-                    if b.pixel_mode == 1:
-                        on = (b.buffer[r * b.pitch + c // 8] >> (7 - c % 8)) & 1
-                    else:
-                        on = b.buffer[r * b.pitch + c] > 127
-                    if on:
-                        got.add(
-                            (
-                                face.glyph.bitmap_left + c,
-                                len(rows) - face.glyph.bitmap_top + r,
-                            )
-                        )
-            want = {
-                (i, r)
-                for r, row in enumerate(rows)
-                for i, c in enumerate(row)
-                if c == "#"
-            }
-            # compare shapes; horizontal origin is the font's left bearing
-            if want:
-                dx = min(x for x, _ in got) - min(x for x, _ in want) if got else 0
-                want = {(x + dx, y) for x, y in want}
-            if got != want:
-                bad += 1
-                print(f"MISMATCH {mode} {ch!r}")
+    for ch, rows in glyphs.items():
+        face.load_char(ch, ft.FT_LOAD_RENDER | ft.FT_LOAD_MONOCHROME | ft.FT_LOAD_TARGET_MONO)
+        g, b = face.glyph, face.glyph.bitmap
+        got = {(g.bitmap_left + c, len(rows) - g.bitmap_top + r) for r in range(b.rows)
+               for c in range(b.width) if b.buffer[r * b.pitch + c // 8] >> (7 - c % 8) & 1}
+        want = {(i, r) for r, row in enumerate(rows) for i, c in enumerate(row) if c == "#"}
+        if want and got:  # compare shapes; the horizontal origin is the left bearing
+            dx = min(x for x, _ in got) - min(x for x, _ in want)
+            want = {(x + dx, y) for x, y in want}
+        if got != want:
+            bad += 1
+            print(f"MISMATCH {ch!r}")
     print(f"{out}: {len(glyphs)} glyphs, {bad} mismatches")
     return bad == 0
 

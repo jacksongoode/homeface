@@ -2,43 +2,19 @@
   "name": "homeface",
   "author": "jackson",
   "version": "1.0.0",
-  "keywords": [
-    "pebble-app"
-  ],
+  "keywords": ["pebble-app"],
   "private": true,
-  "dependencies": {
-    "pebble-clay": "^1.0.4"
-  },
+  "dependencies": { "pebble-clay": "^1.0.4" },
   "pebble": {
     "displayName": "Homeface",
     "uuid": "5b1c7a52-3f0e-4d9b-8a47-6c2e9d0f1a83",
+    "projectType": "moddable",
     "sdkVersion": "3",
     "enableMultiJS": true,
-    "targetPlatforms": [
-      "emery"
-    ],
-    "watchapp": {
-      "watchface": true
-    },
-    "capabilities": [
-      "location",
-      "health",
-      "configurable"
-    ],
-    "messageKeys": [
-      "TEMP",
-      "ICON",
-      "TZ_OFFSET",
-      "TZ_LABEL",
-      "COMPLICATION",
-      "THEME",
-      "ACCENT",
-      "UNIT",
-      "ZONE"
-    ],
-    "resources": {
-      "media": []
-    },
-    "projectType": "moddable"
+    "targetPlatforms": ["emery"],
+    "watchapp": { "watchface": true },
+    "capabilities": ["location", "health", "configurable"],
+    "messageKeys": ["TEMP", "ICON", "TZ_OFFSET", "TZ_LABEL", "COMPLICATION", "THEME", "ACCENT", "UNIT", "ZONE"],
+    "resources": { "media": [] }
   }
 }

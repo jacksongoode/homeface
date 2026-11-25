@@ -38,7 +38,7 @@ function font(name, size, inkTop) {
 const F = {
   time: font("SpaceGrotesk-SemiBold", 72, 19),
   num: font("SpaceGrotesk-SemiBold", 22, 6),
-  icons: font("Pix-icons", 25, 0),
+  icons: font("PhosphorWeather", 24, 0),  // Phosphor fill icons on a 24px grid (MIT)
   // Pixel fonts; the bold pair is used on the light theme, where 1px dark strokes look faint.
   small: [font("Pix-mono10", 14, 4), font("Pix-mono10-bold", 14, 4)],
   date: [font("Pix-mono12", 18, 6), font("Pix-mono12-bold", 18, 6)],
@@ -129,7 +129,7 @@ function draw() {
   // Weather: temperature right on the margin, icon GAP to its left.
   const temp = s.temp === null ? "--" : `${s.temp}°${s.fahrenheit ? "F" : "C"}`;
   const x = inkText(temp, F.num, METRICS.num, W - M - 1, Y_SPLIT - 8, true, fg);
-  if (s.icon) inkText(s.icon, F.icons, METRICS.icons, x - 1 - GAP, Y_SPLIT - 13, true, fg);
+  if (s.icon) inkText(s.icon, F.icons, METRICS.icons, x - 1 - GAP, Y_SPLIT - 12, true, fg);
 
   // Time: centred by its ink, digits GAP px either side of the colon dots (less if needed to keep
   // TIME_PAD at the edges). An odd leftover pixel comes off the minutes gap so both edges match.

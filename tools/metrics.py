@@ -14,7 +14,7 @@ import struct
 
 from PIL import Image
 
-FONTS = {"time": "SpaceGrotesk-SemiBold-72", "num": "SpaceGrotesk-SemiBold-22", "icons": "Pix-icons-25"}
+FONTS = {"time": "SpaceGrotesk-SemiBold-72", "num": "SpaceGrotesk-SemiBold-22", "icons": "PhosphorWeather-24"}
 MIN_ALPHA = 5
 
 

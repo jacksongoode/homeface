@@ -55,9 +55,8 @@
         ]
       },
       {
-        "source": "./assets/Pix-icons",
-        "size": 25,
-        "monochrome": true,
+        "source": "./assets/PhosphorWeather",
+        "size": 24,
         "characters": "acdefg"
       }
     ]

@@ -1,8 +1,13 @@
 # Homeface
 
 A Pebble Time 2 watchface showing the time, date, weather and a second time zone, written in Alloy.
-Forked from [Homezone](https://apps.rebble.io/en_US/application/6a32271ee24af400096e07f0) by
-Ciaran Flanagan.
+Forked from [Homezone](https://github.com/ciaranpflanagan/pebble-watchfaces/tree/main/console-watchface)
+by Ciaran Flanagan.
+
+<p>
+  <img src="store/emery_dark.png" width="200" alt="Homeface, dark theme">
+  <img src="store/emery_light.png" width="200" alt="Homeface, light theme">
+</p>
 
 ## Build
 
@@ -19,6 +24,12 @@ The fonts in `src/embeddedjs/assets` are generated; edit the sources and rerun t
 - `tools/iconfont.py`: weather icons from `fonts-src/phosphor`.
 - `tools/metrics.py`: refreshes `src/embeddedjs/metrics.js` after a font change (run between two builds).
 
-## Credits
+## Privacy
 
-Space Grotesk (SIL OFL 1.1), Phosphor icons (MIT), Clay (MIT), weather from Open-Meteo.
+Your phone's location is sent to [Open-Meteo](https://open-meteo.com) to fetch the weather. Nothing
+else leaves the phone, and nothing is collected or stored by Homeface.
+
+## Licence
+
+MIT, see [LICENSE](LICENSE). Space Grotesk and the pixel fonts are under the SIL OFL 1.1
+(`src/embeddedjs/assets/OFL.txt`); Phosphor icons and Clay are MIT. Weather data by Open-Meteo.
